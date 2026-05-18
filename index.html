@@ -1487,16 +1487,18 @@ function buildEntryHTML(p, i, newRankings, started, initial, isOpen = false) {
   }
 
   const parScore = formatToPar(p.total);
-  const scoreCol = scoreColor(p.total);
+  // Use !important so the Augusta theme's blanket green color doesn't override under/over par.
+  const scoreColRaw = scoreColor(p.total);
+  const scoreCol    = scoreColRaw ? scoreColRaw + ' !important' : '';
 
   const roundPills = [
     {l:'R1',v:p.r1},{l:'R2',v:p.r2},{l:'R3',v:p.r3},{l:'R4',v:p.r4}
   ].map(r => {
     if (!r.v) return `<div class="round-pill">${r.l}</div>`;
     const disp = formatToPar(r.v);
-    // Augusta: over par = GREEN, under par = RED.
-    const col  = disp === 'E' ? 'color:var(--pga-gold)' :
-                 disp.startsWith('-') ? 'color:#C8102E' : 'color:#1f6b3a';
+    // Augusta: over par = GREEN, under par = RED. !important beats the themed override.
+    const col  = disp === 'E' ? 'color:var(--pga-gold) !important' :
+                 disp.startsWith('-') ? 'color:#C8102E !important' : 'color:#1f6b3a !important';
     return `<div class="round-pill has-score" style="${col}">${disp}</div>`;
   }).join('');
 
