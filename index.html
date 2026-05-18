@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Masters Pool · Live Leaderboard</title>
+<title>The Open Championship Pool · Live Leaderboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --pga-navy:   #00563F;
-    --pga-gold:   #FEDB00;
+    --pga-navy:   #7B1F2E;
+    --pga-gold:   #E8D5A3;
     --pga-dark:   #080d1a;
     --pga-card:   #0f1724;
     --pga-border: rgba(200,169,81,0.2);
@@ -18,14 +19,8 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* Force all text to New Baskerville (overrides per-rule font declarations) */
-  *, *::before, *::after {
-    font-family: 'New Baskerville', 'BaskervilleMT', 'Baskerville Old Face', 'Baskerville', Georgia, serif !important;
-  }
-
   body {
-    background: linear-gradient(180deg, #00563F 0%, #003D2C 45%, #021E15 100%);
-    background-attachment: fixed;
+    background: var(--pga-dark);
     color: #fff;
     font-family: 'New Baskerville', 'BaskervilleMT', 'Baskerville Old Face', 'Baskerville', Georgia, serif;
     min-height: 100vh;
@@ -37,8 +32,8 @@
     position: fixed;
     inset: 0;
     background:
-      radial-gradient(ellipse 80% 50% at 10% 20%, rgba(0,86,63,0.55) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 90% 80%, rgba(254,219,0,0.10) 0%, transparent 55%);
+      radial-gradient(ellipse 80% 50% at 10% 20%, rgba(0,48,135,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 90% 80%, rgba(200,169,81,0.12) 0%, transparent 55%);
     pointer-events: none;
     z-index: 0;
   }
@@ -48,7 +43,7 @@
     z-index: 1;
     padding: 2rem 1.5rem 1.5rem;
     border-bottom: 1px solid var(--pga-border);
-    background: linear-gradient(to bottom, rgba(0,86,63,0.35), transparent);
+    background: linear-gradient(to bottom, rgba(0,48,135,0.25), transparent);
   }
 
   .header-inner {
@@ -645,261 +640,224 @@
     .leaderboard, .setup-panel, .stats-bar, .my-team-bar { padding-left: 1rem; padding-right: 1rem; }
   }
 
-  /* ─────────── Masters theme overrides ───────────
-     White cards (stat cards + leaderboard rows) with Augusta-green text. */
+  /* ==================== OPEN CHAMPIONSHIP THEME ==================== */
   :root {
-    --augusta-green: #00563F;
-    --augusta-green-deep: #003D2C;
+    --open-yellow:       #F5D138;
+    --open-yellow-deep:  #E5B71F;
+    --open-navy:         #0E2C50;
+    --open-navy-deep:    #051A35;
+    --open-navy-mid:     #14467C;
   }
 
-  .stat-card,
-  .entry {
-    background: #ffffff !important;
-    border: 1px solid rgba(0,86,63,0.25) !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+  /* Body: navy gradient (below the line) */
+  body {
+    background: linear-gradient(180deg, var(--open-navy-mid) 0%, var(--open-navy) 45%, var(--open-navy-deep) 100%) !important;
+    background-attachment: fixed !important;
+    color: #fff !important;
   }
+  body::before { display: none !important; }
 
-  .stat-card .stat-label,
-  .stat-card .stat-value {
-    color: var(--augusta-green) !important;
-  }
-
-  .entry .participant-name,
-  .entry .total-score,
-  .entry .rank,
-  .entry .round-pill {
-    color: var(--augusta-green) !important;
-  }
-
-  .entry .round-pill,
-  .entry .rank {
-    background: rgba(0,86,63,0.08) !important;
-  }
-  .entry .round-pill.has-score {
-    background: rgba(0,86,63,0.15) !important;
-    color: var(--augusta-green-deep) !important;
-  }
-
-  .entry:hover {
-    background: #f4faf6 !important;
-    border-color: rgba(0,86,63,0.45) !important;
-  }
-
-  /* Keep rank highlights but in green tones */
-  .entry.rank-1 {
-    background: linear-gradient(135deg, #ffffff 0%, rgba(0,86,63,0.08) 100%) !important;
-    border-color: rgba(0,86,63,0.5) !important;
-  }
-  .entry.rank-1::before { background: var(--augusta-green) !important; }
-  .entry.rank-2::before { background: rgba(0,86,63,0.55) !important; }
-  .entry.rank-3::before { background: rgba(0,86,63,0.3) !important; }
-  .entry.rank-1 .total-score { color: var(--augusta-green-deep) !important; }
-  .rank.top1 { background: rgba(0,86,63,0.18) !important; color: var(--augusta-green-deep) !important; }
-  .rank.top2 { background: rgba(0,86,63,0.12) !important; color: var(--augusta-green) !important; }
-  .rank.top3 { background: rgba(0,86,63,0.08) !important; color: var(--augusta-green) !important; }
-
-  /* My Team highlight on white card */
-  .entry.my-team {
-    background: linear-gradient(135deg, #ffffff 0%, rgba(254,219,0,0.18) 100%) !important;
-    border-color: rgba(0,86,63,0.6) !important;
-  }
-  .entry.my-team::after { color: var(--augusta-green) !important; opacity: 0.85; }
-  /* ── Masters picks-panel overrides (white card) ── */
-  .entry .picks-panel { border-top-color: rgba(0,86,63,0.18) !important; }
-  .entry .pick-row {
-    background: rgba(0,86,63,0.05) !important;
-    border: 1px solid transparent !important;
-  }
-  .entry .pick-row.counting {
-    background: rgba(254,219,0,0.18) !important;
-    border-color: rgba(0,86,63,0.35) !important;
-  }
-  .entry .pick-name { color: var(--augusta-green) !important; opacity: 0.75; }
-  .entry .pick-row.counting .pick-name,
-  .entry .pick-name.counting { color: var(--augusta-green-deep) !important; opacity: 1; font-weight: 600; }
-  .entry .pick-thru { color: var(--augusta-green-deep) !important; font-weight: 700 !important; }
-  .entry .pick-live-dot { background: #C8102E !important; }
-  .entry .tiebreaker-row {
-    border-top-color: rgba(0,86,63,0.18) !important;
-    color: var(--augusta-green) !important;
-  }
-  .entry .tiebreaker-row .tb-label,
-  .entry .tiebreaker-row .tb-sep { color: rgba(0,86,63,0.55) !important; }
-  .entry .tiebreaker-row .tb-value { color: var(--augusta-green-deep) !important; }
-  .entry .expand-hint { color: rgba(0,86,63,0.5) !important; }
-
-  /* ── Header repainted to match the cream scoreboard panels ── */
+  /* Header: pure Open Championship yellow */
   header {
-    background:
-      repeating-linear-gradient(0deg,
-        rgba(0,86,63,0.025) 0px, rgba(0,86,63,0.025) 1px,
-        transparent 1px, transparent 3px),
-      linear-gradient(180deg, #fdfaf2 0%, #f6efde 100%) !important;
-    border-bottom: 1px solid rgba(0,86,63,0.35) !important;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-  }
-  header .tournament-label { color: var(--augusta-green) !important; opacity: 0.75; }
-  header .header-meta,
-  header .header-meta strong { color: var(--augusta-green) !important; }
-  header .pool-caption { color: var(--augusta-green) !important; }
-
-  /* ── LIVE badge in Augusta green ── */
-  .live-badge {
-    background: rgba(0,86,63,0.10) !important;
-    border: 1px solid rgba(0,86,63,0.55) !important;
-    color: var(--augusta-green-deep) !important;
-    font-weight: 800 !important;
-  }
-  .live-dot { background: var(--augusta-green-deep) !important; }
-
-  /* ── Subtle paper / linen texture on the white cards ── */
-  .stat-card,
-  .entry {
-    background:
-      repeating-linear-gradient(0deg,
-        rgba(0,86,63,0.025) 0px, rgba(0,86,63,0.025) 1px,
-        transparent 1px, transparent 3px),
-      linear-gradient(180deg, #fdfaf2 0%, #f6efde 100%) !important;
-  }
-  .entry.rank-1 {
-    background:
-      repeating-linear-gradient(0deg,
-        rgba(0,86,63,0.04) 0px, rgba(0,86,63,0.04) 1px,
-        transparent 1px, transparent 3px),
-      linear-gradient(135deg, #fdfaf2 0%, rgba(254,219,0,0.30) 100%) !important;
-  }
-  .entry.my-team {
-    background:
-      repeating-linear-gradient(0deg,
-        rgba(0,86,63,0.04) 0px, rgba(0,86,63,0.04) 1px,
-        transparent 1px, transparent 3px),
-      linear-gradient(135deg, #fdfaf2 0%, rgba(254,219,0,0.30) 100%) !important;
-  }
-  .entry:hover {
-    background:
-      repeating-linear-gradient(0deg,
-        rgba(0,86,63,0.04) 0px, rgba(0,86,63,0.04) 1px,
-        transparent 1px, transparent 3px),
-      linear-gradient(180deg, #f9f4e3 0%, #efe6cd 100%) !important;
+    background: var(--open-yellow) !important;
+    border-bottom: 3px solid var(--open-navy) !important;
   }
 
-  /* ── Masters logo in header ── */
-  .masters-logo {
+  .open-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    line-height: 1;
+  }
+  .open-logo {
     display: block;
-    width: clamp(180px, 55vw, 280px);
-    height: auto;
-    margin: 6px 0 2px;
+    height: clamp(70px, 14vw, 110px);
+    width: auto;
+    max-width: 100%;
   }
   .pool-caption {
-    font-family: 'New Baskerville', 'BaskervilleMT', 'Baskerville Old Face', 'Baskerville', Georgia, serif;
+    font-family: 'New Baskerville', 'BaskervilleMT', Georgia, serif !important;
     font-style: italic;
-    font-size: clamp(18px, 4vw, 26px);
-    color: var(--pga-gold);
-    letter-spacing: 0.04em;
-    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: clamp(26px, 6vw, 38px);
+    color: var(--open-navy) !important;
+    letter-spacing: 0.02em;
   }
 
-  /* ── Wood-frame inset border + larger hand-painted score numerals ── */
-  .stat-card,
-  .entry {
-    box-shadow:
-      inset 0 0 0 1px rgba(0,86,63,0.55),
-      inset 0 0 0 3px #fdfaf2,
-      inset 0 0 0 4px rgba(0,86,63,0.35),
-      0 2px 4px rgba(0,0,0,0.25) !important;
-    border-color: transparent !important;
+  .tournament-label {
+    color: var(--open-navy) !important;
+    opacity: 0.8;
   }
-  .stat-card .stat-value {
-    font-size: 30px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.02em !important;
+  .header-meta { color: var(--open-navy) !important; opacity: 0.85; }
+  .header-meta strong { color: var(--open-navy) !important; opacity: 1; }
+
+  /* Stat plaques: yellow on navy, black text, white "Leader" value square */
+  .stat-card {
+    background: var(--open-yellow) !important;
+    border: 1px solid var(--open-navy) !important;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.25);
   }
-  .entry .total-score {
-    font-size: 34px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.01em !important;
+  .stat-card .stat-label { color: #000 !important; opacity: 0.7; }
+  .stat-card .stat-value { color: #000 !important; }
+
+  /* Middle stat card (Leader score) → white square */
+  .stat-card:nth-child(2) {
+    background: #fff !important;
   }
-  .entry .round-pill {
-    font-size: 13px !important;
-    font-weight: 600 !important;
-    padding: 3px 7px !important;
-    min-width: 28px !important;
+  .stat-card:nth-child(2) .stat-label,
+  .stat-card:nth-child(2) .stat-value { color: #000 !important; }
+
+  /* Section heading on navy */
+  .section-title { color: rgba(255,255,255,0.7) !important; }
+
+  /* Leaderboard plaques: yellow on navy with black text */
+  .entry,
+  .entry:hover,
+  .entry.rank-1,
+  .entry.my-team {
+    background: var(--open-yellow) !important;
+    border: 1px solid var(--open-navy) !important;
+    color: #000 !important;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.2);
   }
-  .entry .pick-score {
-    font-size: 14px !important;
-    font-weight: 700 !important;
+  .entry:hover { filter: brightness(1.04); }
+
+  .entry .participant-name,
+  .entry .info,
+  .entry .rank { color: #000 !important; }
+  .entry .round-pill { color: #000; }
+
+  .rank, .rank.top1, .rank.top2, .rank.top3 {
+    background: rgba(0,0,0,0.08) !important;
+    color: #000 !important;
   }
 
-  /* ── Bigger, ALL-CAPS, BOLD participant + pick names; bold everything ── */
+  /* Total score square: white background, dynamic text color via inline style */
+  .total-score,
+  .entry.rank-1 .total-score {
+    color: #000;
+    background: #fff !important;
+    border: 1px solid var(--open-navy);
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: inline-block;
+    min-width: 56px;
+    text-align: center;
+  }
+
+  /* Leader gets a navy accent ring */
+  .entry.rank-1 {
+    box-shadow: 0 0 0 2px var(--open-navy), 0 0 0 5px var(--open-yellow), 0 0 0 7px var(--open-navy) !important;
+  }
+  .entry.rank-1::before,
+  .entry.rank-2::before,
+  .entry.rank-3::before { display: none !important; }
+  .entry.my-team::after { color: var(--open-navy) !important; opacity: 0.85; }
+
+  /* Round pills readable on yellow */
+  .round-pill {
+    background: rgba(0,0,0,0.06) !important;
+    border: 1px solid rgba(0,0,0,0.25) !important;
+  }
+
+  /* ALL CAPS + bigger + bolder names */
   body, body * { font-weight: 700 !important; }
   .entry .participant-name {
     font-size: 19px !important;
-    letter-spacing: 0.04em !important;
     text-transform: uppercase !important;
+    letter-spacing: 0.04em !important;
     font-weight: 800 !important;
   }
-  .entry .pick-name,
-  .entry .pick-name.counting {
+  .entry .pick-name, .entry .picks, .entry .picks * {
     font-size: 14px !important;
-    letter-spacing: 0.04em !important;
     text-transform: uppercase !important;
+    letter-spacing: 0.03em !important;
     font-weight: 700 !important;
   }
-  .entry.rank-1 .participant-name {
-    font-weight: 900 !important;
-  }
-
-  /* ── Bigger stat-bar text ── */
-  .stat-card .stat-label {
-    font-size: 12px !important;
-    letter-spacing: 0.18em !important;
-    font-weight: 800 !important;
-  }
-  .stat-card .stat-value {
+  .total-score, .entry.rank-1 .total-score {
     font-size: 34px !important;
     font-weight: 800 !important;
+    letter-spacing: 0.03em !important;
+    padding: 6px 14px !important;
+    min-width: 70px !important;
+  }
+  .rank { font-size: 22px !important; font-weight: 800 !important; }
+  .stat-card .stat-label { font-size: 12px !important; letter-spacing: 0.18em !important; font-weight: 800 !important; }
+  .stat-card .stat-value { font-size: 34px !important; font-weight: 800 !important; }
+  .section-title { font-size: 12px !important; letter-spacing: 0.2em !important; font-weight: 800 !important; }
+
+  /* LIVE badge → white pill, black text + navy dot */
+  .live-badge {
+    background: #fff !important;
+    border: 1px solid var(--open-navy) !important;
+    color: #000 !important;
+    font-weight: 800 !important;
+  }
+  .live-dot { background: var(--open-navy) !important; }
+
+  /* THRU hole text → black */
+  .pick-thru, .thru, .pick-meta .pick-thru { color: #000 !important; font-weight: 700 !important; }
+  .pick-live-dot { background: var(--open-navy) !important; }
+
+  /* Any cell that holds a score → white background */
+  .round-pill, .round-pill.has-score,
+  .pick-score, .pick-row, .pick-row.counting {
+    background: #fff !important;
+    border: 1px solid var(--open-navy) !important;
+  }
+  .round-pill, .round-pill.has-score { color: #000; }
+  .pick-name, .pick-name.counting { color: #000 !important; }
+
+  /* My Team dropdown text → black on white */
+  .my-team-bar select {
+    background: #fff !important;
+    color: #000 !important;
+    border: 1px solid var(--open-navy) !important;
+    font-weight: 700 !important;
+  }
+  .my-team-bar select option { background: #fff !important; color: #000 !important; }
+  /* My Team band sits on the navy gradient → keep these white */
+  .my-team-bar label,
+  #lastUpdated,
+  .section-title,
+  .refresh-bar, .refresh-bar *, #countdown {
+    color: #fff !important;
+  }
+  .btn-clear-team {
+    background: #fff !important;
+    border: 1px solid var(--open-navy) !important;
+    color: var(--open-navy) !important;
+    font-weight: 800 !important;
   }
 
-  /* ── Leader: gold outline instead of yellow gradient fill ── */
-  .entry.rank-1 {
-    background:
-      repeating-linear-gradient(0deg,
-        rgba(0,86,63,0.025) 0px, rgba(0,86,63,0.025) 1px,
-        transparent 1px, transparent 3px),
-      linear-gradient(180deg, #fdfaf2 0%, #f6efde 100%) !important;
-    box-shadow:
-      inset 0 0 0 2px #C9A84C,
-      inset 0 0 0 5px #fdfaf2,
-      inset 0 0 0 8px #C9A84C,
-      0 4px 18px rgba(201,168,76,0.5) !important;
+  /* Tiebreaker → navy; thru text inside the yellow picks panel → black */
+  .tiebreaker-row,
+  .tiebreaker-row .tb-label,
+  .tiebreaker-row .tb-value,
+  .tiebreaker-row .tb-sep {
+    color: var(--open-navy) !important;
+    font-weight: 700 !important;
   }
-  .entry.rank-1 .total-score { color: var(--augusta-green-deep) !important; }
+  .pick-thru, .thru, .pick-meta .pick-thru {
+    color: #000 !important;
+    font-weight: 700 !important;
+  }
 
-  /* ── Live badge + azalea stacked top-right ── */
-  .live-stack {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 14px;
+  /* My Team selected → green ring around tile */
+  .entry.my-team {
+    box-shadow: 0 0 0 2px #1f6b3a, 0 0 0 5px #fff, 0 0 0 7px #1f6b3a, 0 4px 14px rgba(31,107,58,0.45) !important;
+    border-color: #1f6b3a !important;
   }
-  .azalea {
-    width: clamp(120px, 28vw, 200px);
-    aspect-ratio: 3 / 2;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+  .entry.my-team::after { color: #1f6b3a !important; opacity: 1 !important; font-weight: 800 !important; }
+  /* If the leader is also "my team", layer the green ring on top */
+  .entry.rank-1.my-team {
+    box-shadow: 0 0 0 2px #1f6b3a, 0 0 0 5px #fff, 0 0 0 7px #1f6b3a, 0 4px 14px rgba(31,107,58,0.45) !important;
   }
-  .azalea img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-  }
-  .azalea-emoji {
-    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Twemoji Mozilla', sans-serif !important;
-    font-size: 0.85em;
-    margin-left: 4px;
-    vertical-align: 0.05em;
-    font-weight: 400 !important;
-    color: initial !important;
+
+  /* ===== Roboto Slab (Clarendon-style) font override (everything) ===== */
+  *, *::before, *::after {
+    font-family: 'Roboto Slab', 'Clarendon', 'Clarendon BT', 'Bookman Old Style', Georgia, serif !important;
   }
   /* === Cross-browser mobile sizing safety net === */
   html, body { -webkit-text-size-adjust: 100%; max-width: 100vw; overflow-x: hidden; }
@@ -944,20 +902,20 @@
 <header>
   <div class="header-inner">
     <div>
-      <div class="tournament-label" id="tournamentLabel">2026 · Augusta, GA</div>
-      <img src="Masters_Logo.png" alt="The Masters" class="masters-logo">
-      <div class="pool-caption" id="poolCaption">Pool <span class="azalea-emoji" aria-hidden="true">🌸</span></div>
+      <div class="tournament-label" id="tournamentLabel">2026 · Southport, England</div>
+      <h1 class="open-title">
+        <img src="OpenLogo.png" alt="The Open" class="open-logo">
+        <span class="pool-caption" id="poolCaption">Pool</span>
+      </h1>
       <div class="header-meta">
-        <span><strong id="venueLabel">Augusta National Golf Club</strong></span>
-        <span id="datesLabel">April 9 – 12</span>
-        <span id="parLabel">Par 72</span>
+        <span><strong id="venueLabel">Royal Birkdale</strong></span>
+        <span id="datesLabel">July 16 – 19</span>
+        <span id="parLabel">Par 70</span>
       </div>
     </div>
-    <div class="live-stack">
-      <div class="live-badge">
-        <div class="live-dot"></div>
-        LIVE
-      </div>
+    <div class="live-badge">
+      <div class="live-dot"></div>
+      LIVE
     </div>
   </div>
 </header>
@@ -1021,24 +979,22 @@
 </footer>
 
 <script>
-const STORAGE_KEY = 'mastersPoolSheetUrl';
-const DEFAULT_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTyRoUVUfUxmfJbKACW8TKbqagI47CMCzZUrhylnNHetpTWSFShyWNupHpV_8F7cbJX4sgx6n2ptPwr/pub?gid=78325280&single=true&output=csv';
+const STORAGE_KEY = 'pgaPoolSheetUrl';
+const DEFAULT_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSp6aNtmpjahNERBBP0c-iHyfVkhmQ6dRteXTjbMPqJsf3AcxUxBREXyvPbLmdRZJ1Uz7Sy0wI8jsj7/pub?gid=78325280&single=true&output=csv';
 
-// ─────────────────────────────────────────────────────────────
-// TOURNAMENT INFO — edit these once per year. Anything left as an
-// empty string falls back to the placeholder text in the header
-// HTML above. The fields can ALSO be overridden from the Google
-// Sheet itself: in the Leaderboard tab, put `__config__` in column A
-// and one of these keys (year, label, venue, dates, par, caption)
-// in column B and its value in column C. Any matching row found in
-// the published CSV will replace the values below at render time.
+// ── EDIT EACH YEAR ───────────────────────────────────────────
+// Update these fields once a year. You can ALSO override any
+// value directly from the Google Sheet by adding a row in the
+// Leaderboard tab with column A = `__config__`, column B = key
+// (year, label, venue, dates, par, caption, entryFee), and
+// column C = value. Sheet overrides win at render time.
 const TOURNAMENT_CONFIG = {
-  year:     '2027',
-  label:    'Augusta, GA',         // shown next to the year above the logo
-  venue:    'Augusta National Golf Club',
-  dates:    'April 8 – 11',        // ← update per year
-  par:      'Par 72',
-  caption:  'Pool',                // italic caption under the logo
+  year:     '2026',
+  label:    'Southport, England',
+  venue:    'Royal Birkdale',
+  dates:    'July 16 – 19',
+  par:      'Par 70',
+  caption:  'Pool',
   entryFee: '25'                   // $ per participant — drives the Pot stat card
 };
 // ─────────────────────────────────────────────────────────────
@@ -1054,11 +1010,9 @@ function applyTournamentConfig() {
   setTxt('venueLabel', c.venue);
   setTxt('datesLabel', c.dates);
   setTxt('parLabel', c.par);
-  document.title = `The Masters ${c.caption || 'Pool'} · ${c.year || ''} · Live Leaderboard`.trim();
+  document.title = `The Open ${c.caption || 'Pool'} · ${c.year || ''} · Live Leaderboard`.trim();
 }
 
-// Look for `__config__|key|value` rows in the CSV and merge them
-// into TOURNAMENT_CONFIG before we render.
 function mergeConfigFromRows(rows) {
   for (const row of rows) {
     if (!row || !row[0]) continue;
@@ -1072,6 +1026,7 @@ function mergeConfigFromRows(rows) {
   }
   applyTournamentConfig();
 }
+
 const REFRESH_INTERVAL = 30;
 
 let sheetUrl = '';
@@ -1102,10 +1057,9 @@ function setMyTeam(name) {
 function init() {
   applyTournamentConfig();
   const saved = localStorage.getItem(STORAGE_KEY) || DEFAULT_SHEET_URL;
-  // Ignore the unedited placeholder URL so the setup panel still shows.
   const isPlaceholder = !saved
-    || saved.indexOf('YOUR_') > -1
-    || saved.indexOf('PGA_SHEET_CSV_URL_HERE') > -1;
+    || saved.includes('YOUR_PGA_SHEET_CSV_URL_HERE')
+    || !saved.includes('docs.google.com');
   if (saved && !isPlaceholder) {
     sheetUrl = saved;
     document.getElementById('sheetUrl').value = saved;
@@ -1180,30 +1134,23 @@ async function loadData(manual) {
   }
 
   try {
-    // Try direct fetch first — Google's published CSV endpoint usually
-    // returns permissive CORS headers from googleusercontent.com after
-    // its 307 redirect. If the browser blocks it, fall through to a list
-    // of public CORS proxies.
     const proxies = [
-      url => url,                                                  // direct
+      url => url,
       url => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url),
       url => 'https://corsproxy.io/?' + encodeURIComponent(url),
       url => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(url),
     ];
-
     let text = null, lastErr = null;
     for (const build of proxies) {
       try {
         const res = await fetch(build(sheetUrl), { cache: 'no-store' });
         if (!res.ok) throw new Error('HTTP ' + res.status);
         text = await res.text();
-        if (text && text.length > 0) break;
+        if (text && text.length > 20) break;
       } catch (err) { lastErr = err; }
     }
-    if (text === null) throw lastErr || new Error('All fetch attempts failed');
-    const rows = parseCSV(text);
-    mergeConfigFromRows(rows);
-    renderLeaderboard(rows);
+    if (!text) throw lastErr || new Error('All proxies failed');
+    renderLeaderboard(parseCSV(text));
   } catch (e) {
     console.error(e);
     if (entries.querySelector('.skeleton-entry')) {
@@ -1242,16 +1189,23 @@ function formatToPar(val) {
   if (val === '' || val === null || isNaN(parseFloat(val))) return '–';
   const n = parseFloat(val);
   if (n === 0) return 'E';
-  // Show +/- signs; color (red under / green over) carries Augusta meaning.
   return n > 0 ? '+' + n : String(n);
 }
 
 function scoreColor(val) {
-  if (val === '' || val === null || isNaN(parseFloat(val))) return '';
-  const n = parseFloat(val);
-  // Augusta manual scoreboard convention: under par = RED, over par = GREEN.
-  if (n === 0) return 'color:#111';
-  return n > 0 ? 'color:#1f6b3a' : 'color:#C8102E';
+  const s = formatToPar(val);
+  if (s === '–') return '';
+  if (s === 'E') return 'color:#000';
+  // Individual golfer scoring: under par = green, over par = red
+  return s.startsWith('-') ? 'color:#1f6b3a' : 'color:#C8102E';
+}
+
+// Participant total scoring: under par = red, over par / even = black
+function totalScoreColor(val) {
+  const s = formatToPar(val);
+  if (s === '–') return '';
+  if (s.startsWith('-')) return 'color:#C8102E';
+  return 'color:#000';
 }
 
 function countRounds(r1, r2, r3, r4) {
@@ -1260,6 +1214,7 @@ function countRounds(r1, r2, r3, r4) {
 
 // ── Main render ──────────────────────────────────────────────
 function renderLeaderboard(rows) {
+  mergeConfigFromRows(rows);
   let dataStart = 0;
   for (let i = 0; i < rows.length; i++) {
     if (rows[i][1] && rows[i][1].toLowerCase().includes('participant')) {
@@ -1487,19 +1442,18 @@ function buildEntryHTML(p, i, newRankings, started, initial, isOpen = false) {
     else if (diff < 0) movementHtml = `<span class="movement down">▼${Math.abs(diff)}</span>`;
   }
 
-  const parScore = formatToPar(p.total);
-  // Use !important so the Augusta theme's blanket green color doesn't override under/over par.
-  const scoreColRaw = scoreColor(p.total);
-  const scoreCol    = scoreColRaw ? scoreColRaw + ' !important' : '';
+  const totalRaw = (p.total == null ? '' : String(p.total)).trim();
+  const isParticipantCut = /^(cut|wd|dq)$/i.test(totalRaw);
+  const parScore = isParticipantCut ? 'CUT' : formatToPar(p.total);
+  const scoreCol = isParticipantCut ? 'color:#000' : totalScoreColor(p.total);
 
   const roundPills = [
     {l:'R1',v:p.r1},{l:'R2',v:p.r2},{l:'R3',v:p.r3},{l:'R4',v:p.r4}
   ].map(r => {
     if (!r.v) return `<div class="round-pill">${r.l}</div>`;
     const disp = formatToPar(r.v);
-    // Augusta: over par = GREEN, under par = RED. !important beats the themed override.
-    const col  = disp === 'E' ? 'color:var(--pga-gold) !important' :
-                 disp.startsWith('-') ? 'color:#C8102E !important' : 'color:#1f6b3a !important';
+    const col  = disp === 'E' ? 'color:#000' :
+                 disp.startsWith('-') ? 'color:#1f6b3a' : 'color:#C8102E';
     return `<div class="round-pill has-score" style="${col}">${disp}</div>`;
   }).join('');
 
