@@ -717,7 +717,7 @@
   .entry .pick-name { color: var(--augusta-green) !important; opacity: 0.75; }
   .entry .pick-row.counting .pick-name,
   .entry .pick-name.counting { color: var(--augusta-green-deep) !important; opacity: 1; font-weight: 600; }
-  .entry .pick-thru { color: rgba(0,86,63,0.55) !important; }
+  .entry .pick-thru { color: var(--augusta-green-deep) !important; font-weight: 700 !important; }
   .entry .pick-live-dot { background: #C8102E !important; }
   .entry .tiebreaker-row {
     border-top-color: rgba(0,86,63,0.18) !important;
@@ -743,13 +743,14 @@
   header .header-meta strong { color: var(--augusta-green) !important; }
   header .pool-caption { color: var(--augusta-green) !important; }
 
-  /* ── LIVE badge in Augusta red ── */
+  /* ── LIVE badge in Augusta green ── */
   .live-badge {
-    background: rgba(200,16,46,0.12) !important;
-    border: 1px solid rgba(200,16,46,0.55) !important;
-    color: #C8102E !important;
+    background: rgba(0,86,63,0.10) !important;
+    border: 1px solid rgba(0,86,63,0.55) !important;
+    color: var(--augusta-green-deep) !important;
+    font-weight: 800 !important;
   }
-  .live-dot { background: #C8102E !important; }
+  .live-dot { background: var(--augusta-green-deep) !important; }
 
   /* ── Subtle paper / linen texture on the white cards ── */
   .stat-card,
